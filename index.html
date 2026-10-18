@@ -1,177 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ericade Store - Ultimate Arcade & App Hub</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --success: #22c55e;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ericade Store - Cloud Gaming & APK Distribution</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-color: #38bdf8;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 20px;
+    }
 
-        header {
-            background-color: var(--card-bg);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #334155;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    header h1 {
+      color: var(--accent-color);
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
 
-        .auth-status {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+    header p {
+      color: var(--text-muted);
+    }
 
-        .btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
+    /* Section for Upload Form */
+    .upload-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            width: 100%;
-        }
+    .upload-card h2 {
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      color: var(--accent-color);
+    }
 
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 0.5rem;
-        }
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
+    .form-group input, .form-group select {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #fff;
+    }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            border: 1px solid #334155;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: var(--accent-color);
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
 
-        .card:hover {
-            transform: translateY(-4px);
-        }
+    .btn:hover {
+      opacity: 0.9;
+    }
 
-        .card-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            background-color: #000;
-        }
+    /* Controls (Filter & Search) */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        .card-body {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
+    .filter-btn {
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border: 1px solid #334155;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
 
-        .card-badge {
-            align-self: flex-start;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
+    .filter-btn.active {
+      background: var(--accent-color);
+      color: #0f172a;
+      font-weight: bold;
+    }
 
-        .badge-html5 { background-color: #3b82f6; color: white; }
-        .badge-apk { background-color: #10b981; color: white; }
+    /* Apps Grid */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-        .card-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
 
-        .card-desc {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
+    .app-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
 
-        .card-action {
-            display: block;
-            text-align: center;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-        }
+    .app-card .badge {
+      display: inline-block;
+      background: #334155;
+      color: var(--accent-color);
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
 
-        .form-section {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid #334155;
-            margin-top: 2rem;
-        }
+    .app-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
+    .download-link {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: var(--accent-color);
+      color: #0f172a;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
+  <header>
+    <h1>Ericade Store</h1>
+    <p>Cloud-Enabled Gaming & APK Distribution Platform</p>
+  </header>
 
-        .form-control
+  <div class="container">
+    
+    <!-- Upload Section -->
+    <div class="upload-card">
+      <h2>Add New Game / APK</h2>
+      <form id="appForm">
+        <div class="form-group">
+          <input type="text" id="appName" placeholder="App / Game Title" required>
+          <select id="appCategory" required>
+            <option value="Action">Action</option>
+            <option value="Casual">Casual</option>
+            <option value="Tools">Tools</option>
+            <option value="Simulation">Simulation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="url" id="appLink" placeholder="Download Link (APK/Game URL)" required>
+          <input type="text" id="appDesc" placeholder="Short Description" required>
+        </div>
+        <button type="submit" class="btn">Publish to Store</button>
+      </form>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="controls">
+      <div>
+        <button class="filter-btn active" onclick="filterCategory('All', this)">All</button>
+        <button class="filter-btn" onclick="filterCategory('Action', this)">Action</button>
+        <button class="filter-btn" onclick="filterCategory('Casual', this)">Casual</button>
+        <button class="filter-btn" onclick="filterCategory('Tools', this)">Tools</button>
+        <button class="filter-btn" onclick="filterCategory('Simulation', this)">Simulation</button>
+      </div>
+    </div>
+
+    <!-- Apps Display Area -->
+    <div id="appGrid" class="app-grid">
+      <!-- Firebase dynamic items will load here -->
+    </div>
+
+  </div>
+
+  <!-- Firebase Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Your Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBPJPziSr9VAKpoRFlzHcOAUdZS1pNoYgM",
+      authDomain: "ericade-store.firebaseapp.com",
+      projectId: "ericade-store",
+      storageBucket: "ericade-store.firebasestorage.app",
+      messagingSenderId: "570100983449",
+      appId: "1:570100983449:web:a217edbc5dae6587ccba08",
+      measurementId: "G-W4EC0R99PM"
+    };
+
+    // Initialize Firebase & Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let allApps = [];
+
+    // Form Elements
+    const appForm = document.getElementById('appForm');
+    const appGrid = document.getElementById('appGrid');
+
+    // Add App to Firestore
+    appForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const newApp = {
+        title: document.getElementById('appName').value,
+        category: document.getElementById('appCategory').value,
+        downloadUrl: document.getElementById('appLink').value,
+        description: document.getElementById('appDesc').value,
+        createdAt: new Date()
+      };
+
+      try {
+        await addDoc(collection(db, "apps"), newApp);
+        appForm.reset();
+        loadApps();
+      } catch (error) {
+        console.error("Error adding app: ", error);
+        alert("Error uploading. Please try again.");
+      }
+    });
+
+    // Load Apps from Firestore
+    async function loadApps() {
+      appGrid.innerHTML = "<p>Loading store items...</p>";
+      try {
+        const q = query(collection(db, "apps"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        allApps = [];
+        querySnapshot.forEach((doc) => {
+          allApps.push(doc.data());
+        });
+        renderApps(allApps);
+      } catch (error) {
+        console.error("Error fetching apps: ", error);
+        appGrid.innerHTML = "<p>Failed to load store items.</p>";
+      }
+    }
+
+    // Render Apps to UI
+    function renderApps(appsList) {
+      appGrid.innerHTML = "";
+      if (appsList.length === 0) {
+        appGrid.innerHTML = "<p>No games or APKs found.</p>";
+        return;
+      }
+      appsList.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.innerHTML = `
+          <div>
+            <h3>${app.title}</h3>
+            <span class="badge">${app.category}</span>
+            <p>${app.description}</p>
+          </div>
+          <a href="${app.downloadUrl}" target="_blank" class="download-link">Download / Play</a>
+        `;
+        appGrid.appendChild(card);
+      });
+    }
+
+    // Filter Logic
+    window.filterCategory = function(category, btnElement) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      if (category === 'All') {
+        renderApps(allApps);
+      } else {
+        const filtered = allApps.filter(app => app.category === category);
+        renderApps(filtered);
+      }
+    };
+
+    // Initial Load
+    loadApps();
+  </script>
+</body>
+</html>
