@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ericade Store - Global Game & APK Platform</title>
+  <title>Ericade Store - Ultimate Global Game & Creator Platform</title>
   <style>
     :root {
-      --bg-gradient: radial-gradient(circle at center, #090d16 0%, #020617 100%);
-      --card-bg: rgba(15, 23, 42, 0.94);
+      --bg-gradient: radial-gradient(circle at center, #070b14 0%, #020617 100%);
+      --card-bg: rgba(15, 23, 42, 0.92);
       --accent-color: #10b981;
+      --accent-hover: #059669;
       --cyan-glow: #38bdf8;
       --gold-color: #f59e0b;
       --danger-color: #ef4444;
-      --text-color: #f8fafc;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -24,292 +26,396 @@
 
     body {
       background: var(--bg-gradient);
-      color: var(--text-color);
+      color: var(--text-main);
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 15px;
+      padding: 20px;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    header h1 {
-      color: var(--accent-color);
-      font-size: 2.3rem;
-      font-weight: 900;
-      text-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
-      letter-spacing: 1px;
-    }
-
-    header p {
-      color: #94a3b8;
-      font-size: 0.85rem;
-    }
-
-    .container {
-      max-width: 520px;
+    .wrapper {
       width: 100%;
+      max-width: 560px;
     }
 
-    .card {
+    .brand-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .brand-header h1 {
+      color: var(--accent-color);
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+    }
+
+    .brand-header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .panel {
       background: var(--card-bg);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      margin-bottom: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
     }
 
-    .hidden { display: none !important; }
+    .hidden {
+      display: none !important;
+    }
 
     .nav-tabs {
       display: flex;
-      gap: 6px;
-      margin-bottom: 15px;
+      gap: 8px;
+      margin-bottom: 22px;
+      background: rgba(3, 7, 18, 0.6);
+      padding: 6px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .tab-btn {
       flex: 1;
-      padding: 10px 4px;
+      padding: 10px;
       border: none;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
+      background: transparent;
+      color: var(--text-muted);
       border-radius: 10px;
-      font-weight: bold;
-      font-size: 0.78rem;
+      font-weight: 700;
+      font-size: 0.85rem;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.2s ease;
     }
 
     .tab-btn.active {
       background: var(--accent-color);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
     }
 
-    .input-group {
-      margin-bottom: 12px;
+    .form-group {
+      margin-bottom: 16px;
     }
 
-    .input-group label {
+    .form-group label {
       display: block;
-      font-size: 0.8rem;
-      color: #cbd5e1;
-      margin-bottom: 4px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
       font-weight: 600;
     }
 
-    .input-group input, .input-group textarea {
+    .form-group input, .form-group textarea {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(15, 23, 42, 0.9);
+      padding: 12px 16px;
+      background: rgba(3, 7, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       outline: none;
+      transition: border-color 0.2s;
     }
 
-    .btn {
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .action-btn {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+      color: #fff;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+      transition: transform 0.1s, filter 0.2s;
       margin-top: 8px;
     }
 
-    .game-viewport {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(to bottom, #0f172a, #020617);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.15);
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    .action-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-color) 0%, #b45309);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, var(--danger-color) 0%, #b91c1c);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+    }
+
+    .user-stats-bar {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      background: rgba(3, 7, 18, 0.6);
+      padding: 12px 16px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .crystal-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .game-item-card {
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+
+    .game-item-card:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .game-arena-screen {
+      background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+      border-radius: 18px;
+      padding: 30px;
       text-align: center;
-      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    .game-arena-screen .avatar {
+      font-size: 4rem;
+      margin-bottom: 12px;
+      animation: floatAnim 3s ease-in-out infinite;
+    }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric-card {
+      background: rgba(3, 7, 18, 0.6);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .post-card {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
     }
 
     .post-card img {
       width: 100%;
-      max-height: 250px;
+      max-height: 280px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-top: 8px;
+      border-radius: 10px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>ERICADE STORE</h1>
-    <p>Global Game Platform & Creator Hub</p>
-  </header>
-
-  <div class="container">
-
-    <!-- Auth Card (Shows if user is not logged in) -->
-    <div id="authCard" class="card">
-      <h2 style="margin-bottom: 14px; color: var(--accent-color); font-size: 1.2rem;">User Login / Register</h2>
-      <div class="input-group">
-        <label>Username / Nickname</label>
-        <input type="text" id="loginName" placeholder="Enter your name">
-      </div>
-      <div class="input-group">
-        <label>Email Address</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email">
-      </div>
-      <button class="btn" onclick="handleLogin()">Login to Ericade Store</button>
+  <div class="wrapper">
+    <div class="brand-header">
+      <h1>ERICADE STORE</h1>
+      <p>Global Game Platform, Publishing & Community Hub</p>
     </div>
 
-    <!-- Main Platform Interface (Hidden until login) -->
-    <div id="platformCard" class="hidden">
-      
-      <!-- User Info Bar -->
-      <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30,41,59,0.7); padding: 10px 14px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);">
+    <!-- PANEL 1: USER AUTHENTICATION / REGISTRATION -->
+    <div id="authPanel" class="panel">
+      <h2 style="font-size: 1.3rem; color: var(--accent-color); margin-bottom: 16px;">Creator & Player Registration</h2>
+      <div class="form-group">
+        <label>Survivor / Creator Nickname</label>
+        <input type="text" id="inputName" placeholder="Enter your public nickname">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="inputEmail" placeholder="Enter your email address">
+      </div>
+      <button class="action-btn" type="button" onclick="handleLogin()">Register & Enter Platform</button>
+    </div>
+
+    <!-- PANEL 2: MAIN DASHBOARD & PLATFORM -->
+    <div id="platformPanel" class="panel hidden">
+      <div class="user-stats-bar">
         <div>
-          <strong id="showUser" style="color: #34d399;">User</strong><br>
-          <small id="showEmail" style="color: #94a3b8; font-size: 0.75rem;"></small>
+          <strong id="showName" style="font-size: 1.05rem; color: var(--accent-color);">Player</strong><br>
+          <small id="showEmail" style="color: var(--text-muted); font-size: 0.75rem;"></small>
         </div>
-        <button onclick="handleLogout()" style="background: rgba(239,68,68,0.2); border: 1px solid #ef4444; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer;">Logout</button>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="crystal-badge">💎 <span id="showCrystals">500</span></div>
+          <button onclick="handleLogout()" style="background: rgba(239,68,68,0.2); border: 1px solid var(--danger-color); color: #fff; padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; cursor: pointer;">Logout</button>
+        </div>
       </div>
 
       <!-- Navigation Tabs -->
       <div class="nav-tabs">
-        <button class="tab-btn active" id="tabStore" onclick="switchTab('store')">Games Store</button>
-        <button class="tab-btn" id="tabPublish" onclick="switchTab('publish')">Upload Game</button>
+        <button class="tab-btn active" id="tabStore" onclick="switchTab('store')">Game Store</button>
+        <button class="tab-btn" id="tabPublish" onclick="switchTab('publish')">Upload APK</button>
         <button class="tab-btn" id="tabCommunity" onclick="switchTab('community')">Community Wall</button>
       </div>
 
-      <!-- 1. STORE & PLAY SECTION -->
-      <div id="storeSection" class="card">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Available Community Games</h3>
-        <div id="storeList"></div>
+      <!-- TAB 1: GAME STORE & LIBRARY -->
+      <div id="storeSection">
+        <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Available Published Games</h3>
+        <div id="gamesListContainer"></div>
       </div>
 
-      <!-- 2. PUBLISH / UPLOAD SECTION -->
-      <div id="publishSection" class="card hidden">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Upload & Publish Your Game</h3>
-        <div class="input-group">
+      <!-- TAB 2: PUBLISH / UPLOAD MODULE -->
+      <div id="publishSection" class="hidden">
+        <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Upload & Publish Your Game</h3>
+        <div class="form-group">
           <label>Game Title</label>
-          <input type="text" id="pubTitle" placeholder="e.g. Cyber Runner 3D">
+          <input type="text" id="pubTitle" placeholder="e.g. Open Survival 3D">
         </div>
-        <div class="input-group">
-          <label>Game APK / ZIP / HTML File</label>
+        <div class="form-group">
+          <label>Game File / APK (.apk, .zip)</label>
           <input type="file" id="pubFile" accept=".apk,.zip,.html">
         </div>
-        <div class="input-group">
-          <label>Game Description</label>
-          <textarea id="pubDesc" rows="2" placeholder="Brief info about your game..."></textarea>
+        <div class="form-group">
+          <label>Short Description</label>
+          <textarea id="pubDesc" rows="2" placeholder="Describe your game features..."></textarea>
         </div>
-        <button class="btn" id="btnPublishStore" onclick="publishGame()">🚀 Publish Game Now</button>
+        <button class="action-btn" id="btnPublish" type="button" onclick="publishNewGame()">🚀 Publish to Ericade Store</button>
       </div>
 
-      <!-- 3. COMMUNITY PHOTO WALL SECTION -->
-      <div id="communitySection" class="card hidden">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Community Wall</h3>
-        <div style="background: rgba(30,41,59,0.5); padding: 12px; border-radius: 12px; margin-bottom: 15px;">
-          <h4 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--cyan-glow);">Share a Photo or Moment</h4>
-          <div class="input-group">
-            <textarea id="postCaption" rows="2" placeholder="Write something..."></textarea>
+      <!-- TAB 3: COMMUNITY PHOTO & POST FEED -->
+      <div id="communitySection" class="hidden">
+        <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Community Photo Wall</h3>
+        <div style="background: rgba(3, 7, 18, 0.5); padding: 14px; border-radius: 14px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05);">
+          <div class="form-group">
+            <textarea id="postCaption" rows="2" placeholder="Share your milestone, screenshot caption or thoughts..."></textarea>
           </div>
-          <div class="input-group">
-            <label style="font-size: 0.75rem;">Select Photo</label>
+          <div class="form-group" style="margin-bottom: 10px;">
+            <label style="font-size: 0.75rem;">Upload Photo</label>
             <input type="file" id="postImage" accept="image/*">
           </div>
-          <button class="btn" id="btnPostCommunity" style="margin-top: 4px;" onclick="createPost()">📤 Post to Wall</button>
+          <button class="action-btn btn-gold" id="btnPost" type="button" style="margin:0;" onclick="createCommunityPost()">📤 Share to Community</button>
         </div>
-        <div id="postsFeed"></div>
+        <div id="communityFeedList"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: INTERACTIVE GAME PLAY ARENA -->
+    <div id="arenaPanel" class="panel hidden">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 id="arenaHeaderTitle" style="color: var(--cyan-glow); font-size: 1.1rem;">Game Session</h3>
+        <button class="action-btn btn-danger" type="button" style="width: auto; margin:0; padding: 6px 14px; font-size: 0.8rem;" onclick="returnToDashboard()">Exit Game</button>
       </div>
 
-      <!-- 4. GAME PLAY ARENA SCREEN -->
-      <div id="arenaSection" class="card hidden">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <h3 id="playingTitle" style="color: var(--cyan-glow);">Playing Game</h3>
-          <button class="btn" style="width: auto; margin:0; padding: 6px 12px; background: var(--danger-color);" onclick="exitGame()">Exit Game</button>
-        </div>
-        <div class="game-viewport">
-          <span style="font-size: 3.5rem;">🎮</span>
-          <h4 id="activeGameTitle" style="color: #34d399; margin-top: 10px;">Loading Session...</h4>
-          <p id="activeGameDev" style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;"></p>
-          <div style="margin-top: 15px;">
-            <button class="btn" style="background: var(--gold-color); padding: 8px 16px;" onclick="alert('Simulation: Interactive game loop active!')">▶ Start Gameplay</button>
-          </div>
-        </div>
+      <div class="game-arena-screen">
+        <div class="avatar">🏕️</div>
+        <h3 id="activePlayingTitle" style="color: var(--accent-color); font-size: 1.2rem;">Open Survival Sandbox</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Interactive game session loaded successfully.</p>
       </div>
 
+      <div class="metrics-grid">
+        <div class="metric-card">HP: <span id="statHp" style="color: var(--danger-color); font-weight:700;">100/100</span></div>
+        <div class="metric-card">Energy: <span id="statEnergy" style="color: var(--cyan-glow); font-weight:700;">100%</span></div>
+        <div class="metric-card">Zone: <span id="statZone" style="color: var(--gold-color);">Safe Sanctuary</span></div>
+        <div class="metric-card">Threat: <span id="statThreat" style="color: var(--accent-color);">Minimal</span></div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button class="action-btn" type="button" style="margin:0;" onclick="gameActionGather()">🔍 Gather Loot</button>
+        <button class="action-btn btn-gold" type="button" style="margin:0;" onclick="gameActionRelocate()">🌀 Relocate Camp</button>
+      </div>
     </div>
 
   </div>
 
   <script>
     let currentUser = null;
+    let playerState = { crystals: 500, hp: 100, energy: 100 };
 
-    // Check existing session
     window.onload = function() {
-      let savedUser = localStorage.getItem('ericade_user');
-      if(savedUser) {
-        currentUser = JSON.parse(savedUser);
-        document.getElementById('showUser').innerText = currentUser.name;
-        document.getElementById('showEmail').innerText = currentUser.email;
-        document.getElementById('authCard').classList.add('hidden');
-        document.getElementById('platformCard').classList.remove('hidden');
-        renderStore();
+      let saved = localStorage.getItem('ericade_active_user');
+      if(saved) {
+        try {
+          currentUser = JSON.parse(saved);
+          document.getElementById('showName').innerText = currentUser.name;
+          document.getElementById('showEmail').innerText = currentUser.email;
+          document.getElementById('authPanel').classList.add('hidden');
+          document.getElementById('platformPanel').classList.remove('hidden');
+          renderGamesStore();
+        } catch(e) {
+          localStorage.removeItem('ericade_active_user');
+        }
       }
     };
 
     function handleLogin() {
-      const name = document.getElementById('loginName').value.trim();
-      const email = document.getElementById('loginEmail').value.trim();
+      const name = document.getElementById('inputName').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
 
       if(!name || !email) {
-        alert("Please enter both your Name and Email address!");
+        alert("Please enter both your Nickname and Email address.");
         return;
       }
 
       currentUser = { name, email };
-      localStorage.setItem('ericade_user', JSON.stringify(currentUser));
+      localStorage.setItem('ericade_active_user', JSON.stringify(currentUser));
 
-      document.getElementById('showUser').innerText = currentUser.name;
+      document.getElementById('showName').innerText = currentUser.name;
       document.getElementById('showEmail').innerText = currentUser.email;
-      document.getElementById('authCard').classList.add('hidden');
-      document.getElementById('platformCard').classList.remove('hidden');
-      renderStore();
+      document.getElementById('authPanel').classList.add('hidden');
+      document.getElementById('platformPanel').classList.remove('hidden');
+      renderGamesStore();
     }
 
     function handleLogout() {
-      localStorage.removeItem('ericade_user');
+      localStorage.removeItem('ericade_active_user');
       currentUser = null;
-      document.getElementById('authCard').classList.remove('hidden');
-      document.getElementById('platformCard').classList.add('hidden');
+      document.getElementById('authPanel').classList.remove('hidden');
+      document.getElementById('platformPanel').classList.add('hidden');
     }
 
     function switchTab(tab) {
       document.getElementById('storeSection').classList.add('hidden');
       document.getElementById('publishSection').classList.add('hidden');
       document.getElementById('communitySection').classList.add('hidden');
-      document.getElementById('arenaSection').classList.add('hidden');
 
       document.getElementById('tabStore').classList.remove('active');
       document.getElementById('tabPublish').classList.remove('active');
@@ -318,45 +424,45 @@
       if(tab === 'store') {
         document.getElementById('storeSection').classList.remove('hidden');
         document.getElementById('tabStore').classList.add('active');
-        renderStore();
+        renderGamesStore();
       } else if(tab === 'publish') {
         document.getElementById('publishSection').classList.remove('hidden');
         document.getElementById('tabPublish').classList.add('active');
       } else if(tab === 'community') {
         document.getElementById('communitySection').classList.remove('hidden');
         document.getElementById('tabCommunity').classList.add('active');
-        renderPosts();
+        renderCommunityFeed();
       }
     }
 
-    // Store & Publish Logic
-    function getStoreItems() {
-      let items = localStorage.getItem('ericade_global_store');
-      return items ? JSON.parse(items) : [
-        { title: "Open Survival 3D", dev: "Ericade Official", desc: "Default open-world survival game.", data: "#" }
+    // Store & APK Publishing Logic
+    function getStoredGames() {
+      let list = localStorage.getItem('ericade_full_games_db');
+      return list ? JSON.parse(list) : [
+        { title: "Open Survival 3D", dev: "Ericade Official", desc: "Official multiplayer open-world survival game.", data: "#", date: "Official" }
       ];
     }
 
-    function publishGame() {
+    function publishNewGame() {
       const title = document.getElementById('pubTitle').value.trim();
       const desc = document.getElementById('pubDesc').value.trim();
       const fileInput = document.getElementById('pubFile');
-      const btn = document.getElementById('btnPublishStore');
+      const btn = document.getElementById('btnPublish');
 
       if(!title || fileInput.files.length === 0) {
-        alert("Please enter a Game Title and select a file/APK!");
+        alert("Please provide a Game Title and select an APK/ZIP file.");
         return;
       }
 
       const file = fileInput.files[0];
-      btn.innerText = "⏳ Uploading...";
+      btn.innerText = "⏳ Uploading to Store...";
       btn.disabled = true;
 
       const reader = new FileReader();
       reader.onload = function(e) {
         try {
-          let store = getStoreItems();
-          store.unshift({
+          let games = getStoredGames();
+          games.unshift({
             title,
             dev: currentUser.name,
             email: currentUser.email,
@@ -365,577 +471,120 @@
             fileName: file.name,
             date: new Date().toLocaleDateString()
           });
-          localStorage.setItem('ericade_global_store', JSON.stringify(store));
-          alert(`Success! "${title}" published to Ericade Store.`);
+          localStorage.setItem('ericade_full_games_db', JSON.stringify(games));
+          alert(`Success! "${title}" has been published to Ericade Store.`);
           
           document.getElementById('pubTitle').value = '';
           document.getElementById('pubDesc').value = '';
           fileInput.value = '';
           switchTab('store');
         } catch(err) {
-          alert("File is too large for storage!");
+          alert("Storage limit reached or file is too large!");
         } finally {
-          btn.innerText = "🚀 Publish Game Now";
+          btn.innerText = "🚀 Publish to Ericade Store";
           btn.disabled = false;
         }
       };
       reader.readAsDataURL(file);
     }
 
-    function renderStore() {
-      const list = document.getElementById('storeList');
-      const items = getStoreItems();
+    function renderGamesStore() {
+      const container = document.getElementById('gamesListContainer');
+      const games = getStoredGames();
       
-      list.innerHTML = '';
-      items.forEach((item, index) => {
-        list.innerHTML += `
-          <div style="background:rgba(30,41,59,0.5); padding:12px; border-radius:12px; margin-bottom:10px; border: 1px solid rgba(255,255,255,0.08);">
-            <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
-              <div>
-                <strong style="color:var(--cyan-glow); font-size: 1rem;">${item.title}</strong><br>
-                <small style="color:#94a3b8;">By ${item.dev} • ${item.date || 'Recent'}</small>
-              </div>
+      container.innerHTML = '';
+      games.forEach((g) => {
+        let actionBtn = g.title === "Open Survival 3D"
+          ? `<button class="action-btn" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="launchGameSession('${g.title}', '${g.dev}')">▶ Play Now</button>`
+          : `<div style="display:flex; gap:6px;">
+               <button class="action-btn" style="width:auto; margin:0; padding:8px 12px; font-size:0.85rem;" onclick="launchGameSession('${g.title}', '${g.dev}')">Play</button>
+               <a class="action-btn btn-gold" style="width:auto; margin:0; padding:8px 12px; font-size:0.85rem; text-decoration:none;" href="${g.data}" download="${g.fileName || 'app.apk'}">Download</a>
+             </div>`;
+
+        container.innerHTML += `
+          <div class="game-item-card">
+            <div>
+              <strong style="color: var(--cyan-glow); font-size: 1rem;">${g.title}</strong><br>
+              <small style="color: var(--text-muted);">By ${g.dev} • ${g.date}</small>
+              <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">${g.desc}</p>
             </div>
-            <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:10px;">${item.desc}</p>
-            <div style="display:flex; gap:8px;">
-              <button class="btn" style="margin:0; padding:6px 12px; font-size:0.85rem;" onclick="playGame('${item.title}', '${item.dev}')">▶ Play Game</button>
-              <a class="btn" style="margin:0; padding:6px 12px; text-decoration:none; font-size:0.85rem; background:var(--gold-color);" href="${item.data}" download="${item.fileName || 'game.apk'}">Download APK</a>
-            </div>
+            <div>${actionBtn}</div>
           </div>
         `;
       });
     }
 
-    function playGame(title, dev) {
-      document.getElementById('storeSection').classList.add('hidden');
-      document.getElementById('arenaSection').classList.remove('hidden');
-      document.getElementById('activeGameTitle').innerText = title;
-      document.getElementById('activeGameDev').innerText = "Developer: " + dev;
+    function launchGameSession(title, dev) {
+      document.getElementById('platformPanel').classList.add('hidden');
+      document.getElementById('arenaPanel').classList.remove('hidden');
+      document.getElementById('activePlayingTitle').innerText = title;
+      document.getElementById('arenaHeaderTitle').innerText = "Playing: " + title + " (By " + dev + ")";
     }
 
-    function exitGame() {
-      document.getElementById('arenaSection').classList.add('hidden');
-      document.getElementById('storeSection').classList.remove('hidden');
-      renderStore();
+    function returnToDashboard() {
+      document.getElementById('arenaPanel').classList.add('hidden');
+      document.getElementById('platformPanel').classList.remove('hidden');
+      renderGamesStore();
     }
 
-    // Community Wall Logic
-    function getPosts() {
-      let posts = localStorage.getItem('ericade_global_posts');
-      return posts ? JSON.parse(posts) : [];
-    }
-
-    function createPost() {
-      const caption = document.getElementById('postCaption').value.trim();
-      const imgInput = document.getElementById('postImage');
-      const btn = document.getElementById('btnPostCommunity');
-
-      if(imgInput.files.length === 0) {
-        alert("Please select a photo to post!");
-        return;
-      }
-
-      const file = imgInput.files[0];
-      btn.innerText = "⏳ Posting...";
-      btn.disabled = true;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          let posts = getPosts();
-          posts.unshift({
-            author: currentUser.name,
-            email: currentUser.email,
-            caption,
-            image: e.target.result,
-            date: new Date().toLocaleDateString()
-          });
-          localStorage.setItem('ericade_global_posts', JSON.stringify(posts));
-          alert("Posted successfully to Community Wall!");
-          document.getElementById('postCaption').value = '';
-          imgInput.value = '';
-          renderPosts();
-        } catch(err) {
-          alert("Image size too large!");
-        } finally {
-          btn.innerText = "📤 Post to Wall";
-          btn.disabled = false;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function renderPosts() {
-      const feed = document.getElementById('postsFeed');
-      const posts = getPosts();
-      
-      if(posts.length === 0) {
-        feed.innerHTML = `<p style="text-align:center; color:#94a3b8; font-size:0.85rem;">No posts yet.</p>`;
-        return;
-      }
-
-      feed.innerHTML = '';
-      posts.forEach(p => {
-        feed.innerHTML += `
-          <div class="post-card">
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
-              <strong style="color:var(--accent-color);">${p.author}</strong>
-              <span style="color:#94a3b8; font-size:0.75rem;">${p.date}</span>
-            </div>
-            <p style="font-size:0.9rem; margin-bottom:6px;">${p.caption || ''}</p>
-            <img src="${p.image}" alt="Community Post">
-          </div>
-        `;
-      });
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ericade Store - Global Game & APK Platform</title>
-  <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at center, #090d16 0%, #020617 100%);
-      --card-bg: rgba(15, 23, 42, 0.94);
-      --accent-color: #10b981;
-      --cyan-glow: #38bdf8;
-      --gold-color: #f59e0b;
-      --danger-color: #ef4444;
-      --text-color: #f8fafc;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
-
-    body {
-      background: var(--bg-gradient);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 15px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    header h1 {
-      color: var(--accent-color);
-      font-size: 2.3rem;
-      font-weight: 900;
-      text-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
-      letter-spacing: 1px;
-    }
-
-    header p {
-      color: #94a3b8;
-      font-size: 0.85rem;
-    }
-
-    .container {
-      max-width: 520px;
-      width: 100%;
-    }
-
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      margin-bottom: 20px;
-    }
-
-    .hidden { display: none !important; }
-
-    .nav-tabs {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 15px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 10px 4px;
-      border: none;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .tab-btn.active {
-      background: var(--accent-color);
-    }
-
-    .input-group {
-      margin-bottom: 12px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: #cbd5e1;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    .input-group input, .input-group textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(15, 23, 42, 0.9);
-      color: #fff;
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-      margin-top: 8px;
-    }
-
-    .game-viewport {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(to bottom, #0f172a, #020617);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 15px;
-    }
-
-    .post-card {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
-    }
-
-    .post-card img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-top: 8px;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>ERICADE STORE</h1>
-    <p>Global Game Platform & Creator Hub</p>
-  </header>
-
-  <div class="container">
-
-    <!-- Auth Card (Shows if user is not logged in) -->
-    <div id="authCard" class="card">
-      <h2 style="margin-bottom: 14px; color: var(--accent-color); font-size: 1.2rem;">User Login / Register</h2>
-      <div class="input-group">
-        <label>Username / Nickname</label>
-        <input type="text" id="loginName" placeholder="Enter your name">
-      </div>
-      <div class="input-group">
-        <label>Email Address</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email">
-      </div>
-      <button class="btn" onclick="handleLogin()">Login to Ericade Store</button>
-    </div>
-
-    <!-- Main Platform Interface (Hidden until login) -->
-    <div id="platformCard" class="hidden">
-      
-      <!-- User Info Bar -->
-      <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30,41,59,0.7); padding: 10px 14px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);">
-        <div>
-          <strong id="showUser" style="color: #34d399;">User</strong><br>
-          <small id="showEmail" style="color: #94a3b8; font-size: 0.75rem;"></small>
-        </div>
-        <button onclick="handleLogout()" style="background: rgba(239,68,68,0.2); border: 1px solid #ef4444; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer;">Logout</button>
-      </div>
-
-      <!-- Navigation Tabs -->
-      <div class="nav-tabs">
-        <button class="tab-btn active" id="tabStore" onclick="switchTab('store')">Games Store</button>
-        <button class="tab-btn" id="tabPublish" onclick="switchTab('publish')">Upload Game</button>
-        <button class="tab-btn" id="tabCommunity" onclick="switchTab('community')">Community Wall</button>
-      </div>
-
-      <!-- 1. STORE & PLAY SECTION -->
-      <div id="storeSection" class="card">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Available Community Games</h3>
-        <div id="storeList"></div>
-      </div>
-
-      <!-- 2. PUBLISH / UPLOAD SECTION -->
-      <div id="publishSection" class="card hidden">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Upload & Publish Your Game</h3>
-        <div class="input-group">
-          <label>Game Title</label>
-          <input type="text" id="pubTitle" placeholder="e.g. Cyber Runner 3D">
-        </div>
-        <div class="input-group">
-          <label>Game APK / ZIP / HTML File</label>
-          <input type="file" id="pubFile" accept=".apk,.zip,.html">
-        </div>
-        <div class="input-group">
-          <label>Game Description</label>
-          <textarea id="pubDesc" rows="2" placeholder="Brief info about your game..."></textarea>
-        </div>
-        <button class="btn" id="btnPublishStore" onclick="publishGame()">🚀 Publish Game Now</button>
-      </div>
-
-      <!-- 3. COMMUNITY PHOTO WALL SECTION -->
-      <div id="communitySection" class="card hidden">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Community Wall</h3>
-        <div style="background: rgba(30,41,59,0.5); padding: 12px; border-radius: 12px; margin-bottom: 15px;">
-          <h4 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--cyan-glow);">Share a Photo or Moment</h4>
-          <div class="input-group">
-            <textarea id="postCaption" rows="2" placeholder="Write something..."></textarea>
-          </div>
-          <div class="input-group">
-            <label style="font-size: 0.75rem;">Select Photo</label>
-            <input type="file" id="postImage" accept="image/*">
-          </div>
-          <button class="btn" id="btnPostCommunity" style="margin-top: 4px;" onclick="createPost()">📤 Post to Wall</button>
-        </div>
-        <div id="postsFeed"></div>
-      </div>
-
-      <!-- 4. GAME PLAY ARENA SCREEN -->
-      <div id="arenaSection" class="card hidden">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <h3 id="playingTitle" style="color: var(--cyan-glow);">Playing Game</h3>
-          <button class="btn" style="width: auto; margin:0; padding: 6px 12px; background: var(--danger-color);" onclick="exitGame()">Exit Game</button>
-        </div>
-        <div class="game-viewport">
-          <span style="font-size: 3.5rem;">🎮</span>
-          <h4 id="activeGameTitle" style="color: #34d399; margin-top: 10px;">Loading Session...</h4>
-          <p id="activeGameDev" style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;"></p>
-          <div style="margin-top: 15px;">
-            <button class="btn" style="background: var(--gold-color); padding: 8px 16px;" onclick="alert('Simulation: Interactive game loop active!')">▶ Start Gameplay</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    let currentUser = null;
-
-    // Check existing session
-    window.onload = function() {
-      let savedUser = localStorage.getItem('ericade_user');
-      if(savedUser) {
-        currentUser = JSON.parse(savedUser);
-        document.getElementById('showUser').innerText = currentUser.name;
-        document.getElementById('showEmail').innerText = currentUser.email;
-        document.getElementById('authCard').classList.add('hidden');
-        document.getElementById('platformCard').classList.remove('hidden');
-        renderStore();
-      }
-    };
-
-    function handleLogin() {
-      const name = document.getElementById('loginName').value.trim();
-      const email = document.getElementById('loginEmail').value.trim();
-
-      if(!name || !email) {
-        alert("Please enter both your Name and Email address!");
-        return;
-      }
-
-      currentUser = { name, email };
-      localStorage.setItem('ericade_user', JSON.stringify(currentUser));
-
-      document.getElementById('showUser').innerText = currentUser.name;
-      document.getElementById('showEmail').innerText = currentUser.email;
-      document.getElementById('authCard').classList.add('hidden');
-      document.getElementById('platformCard').classList.remove('hidden');
-      renderStore();
-    }
-
-    function handleLogout() {
-      localStorage.removeItem('ericade_user');
-      currentUser = null;
-      document.getElementById('authCard').classList.remove('hidden');
-      document.getElementById('platformCard').classList.add('hidden');
-    }
-
-    function switchTab(tab) {
-      document.getElementById('storeSection').classList.add('hidden');
-      document.getElementById('publishSection').classList.add('hidden');
-      document.getElementById('communitySection').classList.add('hidden');
-      document.getElementById('arenaSection').classList.add('hidden');
-
-      document.getElementById('tabStore').classList.remove('active');
-      document.getElementById('tabPublish').classList.remove('active');
-      document.getElementById('tabCommunity').classList.remove('active');
-
-      if(tab === 'store') {
-        document.getElementById('storeSection').classList.remove('hidden');
-        document.getElementById('tabStore').classList.add('active');
-        renderStore();
-      } else if(tab === 'publish') {
-        document.getElementById('publishSection').classList.remove('hidden');
-        document.getElementById('tabPublish').classList.add('active');
-      } else if(tab === 'community') {
-        document.getElementById('communitySection').classList.remove('hidden');
-        document.getElementById('tabCommunity').classList.add('active');
-        renderPosts();
-      }
-    }
-
-    // Store & Publish Logic
-    function getStoreItems() {
-      let items = localStorage.getItem('ericade_global_store');
-      return items ? JSON.parse(items) : [
-        { title: "Open Survival 3D", dev: "Ericade Official", desc: "Default open-world survival game.", data: "#" }
+    // Gameplay Sandbox Actions
+    function gameActionGather() {
+      const rewards = [
+        { name: "🪵 Hardwood Bundle", type: "item" },
+        { name: "🍖 Survival Rations", type: "item" },
+        { name: "💎 Crystal Reward +50", type: "crystal" },
+        { name: "⚠️ Wild Encounter (-10 HP)", type: "hazard" }
       ];
-    }
-
-    function publishGame() {
-      const title = document.getElementById('pubTitle').value.trim();
-      const desc = document.getElementById('pubDesc').value.trim();
-      const fileInput = document.getElementById('pubFile');
-      const btn = document.getElementById('btnPublishStore');
-
-      if(!title || fileInput.files.length === 0) {
-        alert("Please enter a Game Title and select a file/APK!");
-        return;
+      const res = rewards[Math.floor(Math.random() * rewards.length)];
+      if(res.type === "crystal") {
+        playerState.crystals += 50;
+        document.getElementById('showCrystals').innerText = playerState.crystals;
+      } else if(res.type === "hazard") {
+        playerState.hp = Math.max(0, playerState.hp - 10);
+        document.getElementById('statHp').innerText = `${playerState.hp}/100`;
       }
-
-      const file = fileInput.files[0];
-      btn.innerText = "⏳ Uploading...";
-      btn.disabled = true;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          let store = getStoreItems();
-          store.unshift({
-            title,
-            dev: currentUser.name,
-            email: currentUser.email,
-            desc: desc || "No description provided.",
-            data: e.target.result,
-            fileName: file.name,
-            date: new Date().toLocaleDateString()
-          });
-          localStorage.setItem('ericade_global_store', JSON.stringify(store));
-          alert(`Success! "${title}" published to Ericade Store.`);
-          
-          document.getElementById('pubTitle').value = '';
-          document.getElementById('pubDesc').value = '';
-          fileInput.value = '';
-          switchTab('store');
-        } catch(err) {
-          alert("File is too large for storage!");
-        } finally {
-          btn.innerText = "🚀 Publish Game Now";
-          btn.disabled = false;
-        }
-      };
-      reader.readAsDataURL(file);
+      playerState.energy = Math.max(0, playerState.energy - 8);
+      document.getElementById('statEnergy').innerText = `${playerState.energy}%`;
+      alert(`Action Result: ${res.name}`);
     }
 
-    function renderStore() {
-      const list = document.getElementById('storeList');
-      const items = getStoreItems();
-      
-      list.innerHTML = '';
-      items.forEach((item, index) => {
-        list.innerHTML += `
-          <div style="background:rgba(30,41,59,0.5); padding:12px; border-radius:12px; margin-bottom:10px; border: 1px solid rgba(255,255,255,0.08);">
-            <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
-              <div>
-                <strong style="color:var(--cyan-glow); font-size: 1rem;">${item.title}</strong><br>
-                <small style="color:#94a3b8;">By ${item.dev} • ${item.date || 'Recent'}</small>
-              </div>
-            </div>
-            <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:10px;">${item.desc}</p>
-            <div style="display:flex; gap:8px;">
-              <button class="btn" style="margin:0; padding:6px 12px; font-size:0.85rem;" onclick="playGame('${item.title}', '${item.dev}')">▶ Play Game</button>
-              <a class="btn" style="margin:0; padding:6px 12px; text-decoration:none; font-size:0.85rem; background:var(--gold-color);" href="${item.data}" download="${item.fileName || 'game.apk'}">Download APK</a>
-            </div>
-          </div>
-        `;
-      });
+    function gameActionRelocate() {
+      const biomes = [
+        { name: "Whispering Pines", threat: "Low" },
+        { name: "Volcanic Caldera", threat: "High" },
+        { name: "Frozen Wasteland", threat: "Extreme" },
+        { name: "Abandoned Ruins", threat: "Moderate" }
+      ];
+      const b = biomes[Math.floor(Math.random() * biomes.length)];
+      document.getElementById('statZone').innerText = b.name;
+      document.getElementById('statThreat').innerText = b.threat;
+      alert(`Relocated to ${b.name}! Threat Level: ${b.threat}`);
     }
 
-    function playGame(title, dev) {
-      document.getElementById('storeSection').classList.add('hidden');
-      document.getElementById('arenaSection').classList.remove('hidden');
-      document.getElementById('activeGameTitle').innerText = title;
-      document.getElementById('activeGameDev').innerText = "Developer: " + dev;
-    }
-
-    function exitGame() {
-      document.getElementById('arenaSection').classList.add('hidden');
-      document.getElementById('storeSection').classList.remove('hidden');
-      renderStore();
-    }
-
-    // Community Wall Logic
-    function getPosts() {
-      let posts = localStorage.getItem('ericade_global_posts');
+    // Community Photo Wall Logic
+    function getCommunityPosts() {
+      let posts = localStorage.getItem('ericade_full_posts_db');
       return posts ? JSON.parse(posts) : [];
     }
 
-    function createPost() {
+    function createCommunityPost() {
       const caption = document.getElementById('postCaption').value.trim();
       const imgInput = document.getElementById('postImage');
-      const btn = document.getElementById('btnPostCommunity');
+      const btn = document.getElementById('btnPost');
 
       if(imgInput.files.length === 0) {
-        alert("Please select a photo to post!");
+        alert("Please select a photo to share on the community wall.");
         return;
       }
 
       const file = imgInput.files[0];
-      btn.innerText = "⏳ Posting...";
+      btn.innerText = "⏳ Uploading Photo...";
       btn.disabled = true;
 
       const reader = new FileReader();
       reader.onload = function(e) {
         try {
-          let posts = getPosts();
+          let posts = getCommunityPosts();
           posts.unshift({
             author: currentUser.name,
             email: currentUser.email,
@@ -943,27 +592,27 @@
             image: e.target.result,
             date: new Date().toLocaleDateString()
           });
-          localStorage.setItem('ericade_global_posts', JSON.stringify(posts));
-          alert("Posted successfully to Community Wall!");
+          localStorage.setItem('ericade_full_posts_db', JSON.stringify(posts));
+          alert("Photo successfully posted to Community Wall!");
           document.getElementById('postCaption').value = '';
           imgInput.value = '';
-          renderPosts();
+          renderCommunityFeed();
         } catch(err) {
-          alert("Image size too large!");
+          alert("Image file is too large!");
         } finally {
-          btn.innerText = "📤 Post to Wall";
+          btn.innerText = "📤 Share to Community";
           btn.disabled = false;
         }
       };
       reader.readAsDataURL(file);
     }
 
-    function renderPosts() {
-      const feed = document.getElementById('postsFeed');
-      const posts = getPosts();
-      
+    function renderCommunityFeed() {
+      const feed = document.getElementById('communityFeedList');
+      const posts = getCommunityPosts();
+
       if(posts.length === 0) {
-        feed.innerHTML = `<p style="text-align:center; color:#94a3b8; font-size:0.85rem;">No posts yet.</p>`;
+        feed.innerHTML = `<p style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding: 20px 0;">No community posts yet. Be the first to share a moment!</p>`;
         return;
       }
 
@@ -971,11 +620,11 @@
       posts.forEach(p => {
         feed.innerHTML += `
           <div class="post-card">
-            <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
-              <strong style="color:var(--accent-color);">${p.author}</strong>
-              <span style="color:#94a3b8; font-size:0.75rem;">${p.date}</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color: var(--accent-color); font-size: 0.95rem;">${p.author}</strong>
+              <span style="color: var(--text-muted); font-size: 0.75rem;">${p.date}</span>
             </div>
-            <p style="font-size:0.9rem; margin-bottom:6px;">${p.caption || ''}</p>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 8px;">${p.caption || ''}</p>
             <img src="${p.image}" alt="Community Post">
           </div>
         `;
@@ -984,4 +633,3 @@
   </script>
 </body>
 </html>
-
