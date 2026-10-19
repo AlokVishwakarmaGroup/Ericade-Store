@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ericade Store - Ultimate Global Game & Creator Platform</title>
+  <title>Ericade Store - Global Game & Creator Platform</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at center, #070b14 0%, #020617 100%);
@@ -66,7 +66,6 @@
       padding: 28px;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
       margin-bottom: 24px;
-      transition: all 0.3s ease;
     }
 
     .hidden {
@@ -123,7 +122,6 @@
       color: #fff;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
     }
 
     .form-group input:focus, .form-group textarea:focus {
@@ -142,12 +140,7 @@
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
-      transition: transform 0.1s, filter 0.2s;
       margin-top: 8px;
-    }
-
-    .action-btn:active {
-      transform: scale(0.98);
     }
 
     .action-btn:hover {
@@ -194,11 +187,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: border-color 0.2s;
-    }
-
-    .game-item-card:hover {
-      border-color: rgba(16, 185, 129, 0.4);
     }
 
     .game-arena-screen {
@@ -208,18 +196,6 @@
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.15);
       margin-bottom: 16px;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
-    }
-
-    .game-arena-screen .avatar {
-      font-size: 4rem;
-      margin-bottom: 12px;
-      animation: floatAnim 3s ease-in-out infinite;
-    }
-
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
     }
 
     .metrics-grid {
@@ -260,24 +236,24 @@
   <div class="wrapper">
     <div class="brand-header">
       <h1>ERICADE STORE</h1>
-      <p>Global Game Platform, Publishing & Community Hub</p>
+      <p>Global Game Platform & Creator Hub</p>
     </div>
 
-    <!-- PANEL 1: USER AUTHENTICATION / REGISTRATION -->
+    <!-- PANEL 1: USER AUTHENTICATION -->
     <div id="authPanel" class="panel">
-      <h2 style="font-size: 1.3rem; color: var(--accent-color); margin-bottom: 16px;">Creator & Player Registration</h2>
+      <h2 style="font-size: 1.3rem; color: var(--accent-color); margin-bottom: 16px;">Platform Login</h2>
       <div class="form-group">
-        <label>Survivor / Creator Nickname</label>
-        <input type="text" id="inputName" placeholder="Enter your public nickname">
+        <label>Your Nickname</label>
+        <input type="text" id="inputName" placeholder="Enter your nickname">
       </div>
       <div class="form-group">
         <label>Email Address</label>
-        <input type="email" id="inputEmail" placeholder="Enter your email address">
+        <input type="email" id="inputEmail" placeholder="Enter your email">
       </div>
-      <button class="action-btn" type="button" onclick="handleLogin()">Register & Enter Platform</button>
+      <button class="action-btn" type="button" onclick="handleLogin()">Login & Enter Platform</button>
     </div>
 
-    <!-- PANEL 2: MAIN DASHBOARD & PLATFORM -->
+    <!-- PANEL 2: PLATFORM DASHBOARD -->
     <div id="platformPanel" class="panel hidden">
       <div class="user-stats-bar">
         <div>
@@ -290,25 +266,24 @@
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
       <div class="nav-tabs">
         <button class="tab-btn active" id="tabStore" onclick="switchTab('store')">Game Store</button>
         <button class="tab-btn" id="tabPublish" onclick="switchTab('publish')">Upload APK</button>
         <button class="tab-btn" id="tabCommunity" onclick="switchTab('community')">Community Wall</button>
       </div>
 
-      <!-- TAB 1: GAME STORE & LIBRARY -->
+      <!-- TAB 1: STORE -->
       <div id="storeSection">
-        <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Available Published Games</h3>
+        <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Available Community Games</h3>
         <div id="gamesListContainer"></div>
       </div>
 
-      <!-- TAB 2: PUBLISH / UPLOAD MODULE -->
+      <!-- TAB 2: PUBLISH -->
       <div id="publishSection" class="hidden">
         <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Upload & Publish Your Game</h3>
         <div class="form-group">
           <label>Game Title</label>
-          <input type="text" id="pubTitle" placeholder="e.g. Open Survival 3D">
+          <input type="text" id="pubTitle" placeholder="e.g. Cyber Runner 3D">
         </div>
         <div class="form-group">
           <label>Game File / APK (.apk, .zip)</label>
@@ -316,17 +291,17 @@
         </div>
         <div class="form-group">
           <label>Short Description</label>
-          <textarea id="pubDesc" rows="2" placeholder="Describe your game features..."></textarea>
+          <textarea id="pubDesc" rows="2" placeholder="Describe your game..."></textarea>
         </div>
-        <button class="action-btn" id="btnPublish" type="button" onclick="publishNewGame()">🚀 Publish to Ericade Store</button>
+        <button class="action-btn" id="btnPublish" type="button" onclick="publishNewGame()">🚀 Publish to Store</button>
       </div>
 
-      <!-- TAB 3: COMMUNITY PHOTO & POST FEED -->
+      <!-- TAB 3: COMMUNITY WALL -->
       <div id="communitySection" class="hidden">
         <h3 style="color: var(--cyan-glow); font-size: 1.1rem; margin-bottom: 14px;">Community Photo Wall</h3>
         <div style="background: rgba(3, 7, 18, 0.5); padding: 14px; border-radius: 14px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05);">
           <div class="form-group">
-            <textarea id="postCaption" rows="2" placeholder="Share your milestone, screenshot caption or thoughts..."></textarea>
+            <textarea id="postCaption" rows="2" placeholder="Write a caption..."></textarea>
           </div>
           <div class="form-group" style="margin-bottom: 10px;">
             <label style="font-size: 0.75rem;">Upload Photo</label>
@@ -338,7 +313,7 @@
       </div>
     </div>
 
-    <!-- PANEL 3: INTERACTIVE GAME PLAY ARENA -->
+    <!-- PANEL 3: GAME ARENA -->
     <div id="arenaPanel" class="panel hidden">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
         <h3 id="arenaHeaderTitle" style="color: var(--cyan-glow); font-size: 1.1rem;">Game Session</h3>
@@ -346,9 +321,9 @@
       </div>
 
       <div class="game-arena-screen">
-        <div class="avatar">🏕️</div>
+        <div style="font-size: 4rem; margin-bottom: 12px;">🏕️</div>
         <h3 id="activePlayingTitle" style="color: var(--accent-color); font-size: 1.2rem;">Open Survival Sandbox</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Interactive game session loaded successfully.</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Interactive session active.</p>
       </div>
 
       <div class="metrics-grid">
@@ -435,7 +410,6 @@
       }
     }
 
-    // Store & APK Publishing Logic
     function getStoredGames() {
       let list = localStorage.getItem('ericade_full_games_db');
       return list ? JSON.parse(list) : [
@@ -481,7 +455,7 @@
         } catch(err) {
           alert("Storage limit reached or file is too large!");
         } finally {
-          btn.innerText = "🚀 Publish to Ericade Store";
+          btn.innerText = "🚀 Publish to Store";
           btn.disabled = false;
         }
       };
@@ -527,7 +501,6 @@
       renderGamesStore();
     }
 
-    // Gameplay Sandbox Actions
     function gameActionGather() {
       const rewards = [
         { name: "🪵 Hardwood Bundle", type: "item" },
@@ -561,7 +534,6 @@
       alert(`Relocated to ${b.name}! Threat Level: ${b.threat}`);
     }
 
-    // Community Photo Wall Logic
     function getCommunityPosts() {
       let posts = localStorage.getItem('ericade_full_posts_db');
       return posts ? JSON.parse(posts) : [];
