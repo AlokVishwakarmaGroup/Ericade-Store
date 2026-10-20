@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ericade Store - Global Game & APK Platform</title>
+  <title>Ericade Store - Unlimited Cloud Platform</title>
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at center, #090d16 0%, #020617 100%);
@@ -183,12 +183,12 @@
 
   <header>
     <h1>ERICADE STORE</h1>
-    <p>Global Game Platform & Creator Hub</p>
+    <p>Unlimited Cloud Gaming & Creator Hub</p>
   </header>
 
   <div class="container">
 
-    <!-- Unique Single Login Card -->
+    <!-- Login Card -->
     <div id="authCard" class="card">
       <h2 style="margin-bottom: 14px; color: var(--accent-color); font-size: 1.2rem;">User Login / Register</h2>
       <div class="input-group">
@@ -221,45 +221,45 @@
 
       <!-- 1. STORE & PLAY SECTION -->
       <div id="storeSection" class="card">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Available Community Games</h3>
+        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Unlimited Games Library</h3>
         <div id="storeList"></div>
       </div>
 
       <!-- 2. UPLOAD SECTION -->
       <div id="publishSection" class="card hidden">
-        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Upload & Publish Your Game</h3>
+        <h3 style="color: var(--accent-color); margin-bottom: 12px;">Publish Game (Unlimited Storage)</h3>
         <div class="input-group">
           <label>Game Title</label>
-          <input type="text" id="pubTitle" placeholder="e.g. Cyber Runner 3D">
+          <input type="text" id="pubTitle" placeholder="e.g. Ludo Superstar 3D">
         </div>
         <div class="input-group">
-          <label>Game Banner / Thumbnail Image</label>
-          <input type="file" id="pubThumb" accept="image/*">
+          <label>Game Banner / Thumbnail Image URL</label>
+          <input type="text" id="pubThumbUrl" placeholder="Paste Image URL">
         </div>
         <div class="input-group">
-          <label>Game APK / ZIP File</label>
-          <input type="file" id="pubFile" accept=".apk,.zip,.html">
+          <label>Game APK Download Link (URL)</label>
+          <input type="text" id="pubApkUrl" placeholder="Paste Google Drive / MediaFire / Direct Link">
         </div>
         <div class="input-group">
           <label>Game Description</label>
           <textarea id="pubDesc" rows="2" placeholder="Brief info about your game..."></textarea>
         </div>
-        <button class="btn" id="btnPublishStore" onclick="publishGame()">🚀 Publish Game Now</button>
+        <button class="btn" id="btnPublishStore" onclick="publishGameCloud()">🚀 Publish Instantly</button>
       </div>
 
       <!-- 3. COMMUNITY SECTION -->
       <div id="communitySection" class="card hidden">
         <h3 style="color: var(--accent-color); margin-bottom: 12px;">Community Wall</h3>
         <div style="background: rgba(30,41,59,0.5); padding: 12px; border-radius: 12px; margin-bottom: 15px;">
-          <h4 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--cyan-glow);">Share a Photo or Moment</h4>
+          <h4 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--cyan-glow);">Share a Moment</h4>
           <div class="input-group">
             <textarea id="postCaption" rows="2" placeholder="Write something..."></textarea>
           </div>
           <div class="input-group">
-            <label style="font-size: 0.75rem;">Select Photo</label>
-            <input type="file" id="postImage" accept="image/*">
+            <label style="font-size: 0.75rem;">Photo Image URL</label>
+            <input type="text" id="postImgUrl" placeholder="Paste image URL">
           </div>
-          <button class="btn" id="btnPostCommunity" style="margin-top: 4px;" onclick="createPost()">📤 Post to Wall</button>
+          <button class="btn" id="btnPostCommunity" style="margin-top: 4px;" onclick="createPostCloud()">📤 Post to Wall</button>
         </div>
         <div id="postsFeed"></div>
       </div>
@@ -272,10 +272,10 @@
         </div>
         <div class="game-viewport">
           <span style="font-size: 3.5rem;">🎮</span>
-          <h4 id="activeGameTitle" style="color: #34d399; margin-top: 10px;">Loading Session...</h4>
+          <h4 id="activeGameTitle" style="color: #34d399; margin-top: 10px;">Session Ready</h4>
           <p id="activeGameDev" style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;"></p>
           <div style="margin-top: 15px;">
-            <button class="btn" style="background: var(--gold-color); padding: 8px 16px;" onclick="alert('Simulation: Interactive game loop active!')">▶ Start Gameplay</button>
+            <button class="btn" style="background: var(--gold-color); padding: 8px 16px;" onclick="alert('Game session active!')">▶ Start Gameplay</button>
           </div>
         </div>
       </div>
@@ -350,72 +350,47 @@
     }
 
     function getStoreItems() {
-      let items = localStorage.getItem('ericade_global_store');
+      let items = localStorage.getItem('ericade_cloud_store');
       return items ? JSON.parse(items) : [
         { 
-          title: "Open Survival 3D", 
-          dev: "Ericade Official", 
-          desc: "Official open-world multiplayer survival simulation.", 
-          thumb: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200", 
+          title: "Ludo Superstar", 
+          dev: "Alok Group", 
+          desc: "Classic board game with online squad room features.", 
+          thumb: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=200", 
           data: "#" 
         }
       ];
     }
 
-    function publishGame() {
+    function publishGameCloud() {
       const title = document.getElementById('pubTitle').value.trim();
       const desc = document.getElementById('pubDesc').value.trim();
-      const thumbInput = document.getElementById('pubThumb');
-      const fileInput = document.getElementById('pubFile');
-      const btn = document.getElementById('btnPublishStore');
+      const thumbUrl = document.getElementById('pubThumbUrl').value.trim();
+      const apkUrl = document.getElementById('pubApkUrl').value.trim();
 
-      if(!title || fileInput.files.length === 0 || thumbInput.files.length === 0) {
-        alert("Please enter title, thumbnail image, and game file!");
+      if(!title || !apkUrl) {
+        alert("Please enter Game Title and APK Download Link!");
         return;
       }
 
-      btn.innerText = "⏳ Uploading Assets...";
-      btn.disabled = true;
-
-      const thumbFile = thumbInput.files[0];
-      const gameFile = fileInput.files[0];
-
-      const readerThumb = new FileReader();
-      readerThumb.onload = function(eThumb) {
-        const thumbData = eThumb.target.result;
-
-        const readerGame = new FileReader();
-        readerGame.onload = function(eGame) {
-          try {
-            let store = getStoreItems();
-            store.unshift({
-              title,
-              dev: currentUser.name,
-              email: currentUser.email,
-              desc: desc || "Community uploaded game.",
-              thumb: thumbData,
-              data: eGame.target.result,
-              fileName: gameFile.name,
-              date: new Date().toLocaleDateString()
-            });
-            localStorage.setItem('ericade_global_store', JSON.stringify(store));
-            alert(`Success! "${title}" published to Ericade Store.`);
-            
-            document.getElementById('pubTitle').value = '';
-            document.getElementById('pubDesc').value = '';
-            thumbInput.value = '';
-            fileInput.value = '';
-            switchTab('store');
-          } catch(err) {
-            alert("File size is too large for storage!");
-          } finally {
-            btn.innerText = "🚀 Publish Game Now";
-            btn.disabled = false;
-          }
-        };
-        readerGame.readAsDataURL(gameFile);
-      };
-      readerThumb.readAsDataURL(thumbFile);
+      let store = getStoreItems();
+      store.unshift({
+        title,
+        dev: currentUser.name,
+        email: currentUser.email,
+        desc: desc || "Community uploaded game.",
+        thumb: thumbUrl || "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200",
+        data: apkUrl,
+        date: new Date().toLocaleDateString()
+      });
+      localStorage.setItem('ericade_cloud_store', JSON.stringify(store));
+      alert(`Success! "${title}" published instantly.`);
+      
+      document.getElementById('pubTitle').value = '';
+      document.getElementById('pubDesc').value = '';
+      document.getElementById('pubThumbUrl').value = '';
+      document.getElementById('pubApkUrl').value = '';
+      switchTab('store');
     }
 
     function renderStore() {
@@ -426,14 +401,14 @@
       items.forEach((item) => {
         list.innerHTML += `
           <div class="game-card-item">
-            <img src="${item.thumb}" class="game-thumb" alt="Game Banner">
+            <img src="${item.thumb}" class="game-thumb" alt="Banner">
             <div style="flex: 1;">
               <strong style="color:var(--cyan-glow); font-size: 0.95rem;">${item.title}</strong><br>
               <small style="color:#94a3b8; font-size: 0.75rem;">By ${item.dev} • ${item.date || 'Recent'}</small>
               <p style="font-size: 0.8rem; color:#cbd5e1; margin: 4px 0 8px 0;">${item.desc}</p>
               <div style="display:flex; gap:6px;">
                 <button class="btn" style="margin:0; padding:4px 10px; font-size:0.75rem;" onclick="playGame('${item.title}', '${item.dev}')">Play</button>
-                <a class="btn" style="margin:0; padding:4px 10px; text-decoration:none; font-size:0.75rem; background:var(--gold-color);" href="${item.data}" download="${item.fileName || 'game.apk'}">Download</a>
+                <a class="btn" style="margin:0; padding:4px 10px; text-decoration:none; font-size:0.75rem; background:var(--gold-color);" href="${item.data}" target="_blank">Download</a>
               </div>
             </div>
           </div>
@@ -455,48 +430,32 @@
     }
 
     function getPosts() {
-      let posts = localStorage.getItem('ericade_global_posts');
+      let posts = localStorage.getItem('ericade_cloud_posts');
       return posts ? JSON.parse(posts) : [];
     }
 
-    function createPost() {
+    function createPostCloud() {
       const caption = document.getElementById('postCaption').value.trim();
-      const imgInput = document.getElementById('postImage');
-      const btn = document.getElementById('btnPostCommunity');
+      const imgUrl = document.getElementById('postImgUrl').value.trim();
 
-      if(imgInput.files.length === 0) {
-        alert("Please select a photo to post!");
+      if(!imgUrl) {
+        alert("Please provide an image URL for the post!");
         return;
       }
 
-      const file = imgInput.files[0];
-      btn.innerText = "⏳ Posting...";
-      btn.disabled = true;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          let posts = getPosts();
-          posts.unshift({
-            author: currentUser.name,
-            email: currentUser.email,
-            caption,
-            image: e.target.result,
-            date: new Date().toLocaleDateString()
-          });
-          localStorage.setItem('ericade_global_posts', JSON.stringify(posts));
-          alert("Posted successfully to Community Wall!");
-          document.getElementById('postCaption').value = '';
-          imgInput.value = '';
-          renderPosts();
-        } catch(err) {
-          alert("Image size too large!");
-        } finally {
-          btn.innerText = "📤 Post to Wall";
-          btn.disabled = false;
-        }
-      };
-      reader.readAsDataURL(file);
+      let posts = getPosts();
+      posts.unshift({
+        author: currentUser.name,
+        email: currentUser.email,
+        caption,
+        image: imgUrl,
+        date: new Date().toLocaleDateString()
+      });
+      localStorage.setItem('ericade_cloud_posts', JSON.stringify(posts));
+      alert("Posted successfully to Community Wall!");
+      document.getElementById('postCaption').value = '';
+      document.getElementById('postImgUrl').value = '';
+      renderPosts();
     }
 
     function renderPosts() {
